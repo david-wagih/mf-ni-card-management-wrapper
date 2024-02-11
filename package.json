@@ -1,0 +1,16 @@
+{
+  "name": "mf-ni-wrapper",
+  "version": "1.0.0",
+  "description": "",
+  "cordova": {
+    "id": "mf-ni-wrapper",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "keywords": [],
+  "scripts": {},
+  "author": "David Wagih",
+  "license": "MIT"
+}

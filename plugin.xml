@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="mf-ni-wrapper" version="1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://apache.org/cordova/ns/plugins/1.0">
+    <name>My Cordova Plugin</name>
+    <description>This is my first custom plugin</description>
+    <license>MIT</license>
+    <keywords>echo,plugin, cordova</keywords>
+
+
+    <js-module src="www/plugin.js" name="plugin">
+        <runs />
+        <!-- this is the window variable name you want, like window.MfNiWrapperPlugin  -->
+        <clobbers target="MfNiWrapperPlugin" />
+    </js-module>
+
+    <engines>
+        <engine name="cordova" version=">=10.0.0" />
+        <engine name="cordova-android" version=">=9.0.0" />
+    </engines>
+
+    <!-- android -->
+    <platform name="android">
+        <framework src="com.github.network-international:card-management-sdk-android:1.0.47" />
+        <config-file target="config.xml" parent="/*">
+            <preference name="GradlePluginKotlinEnabled" value="true" />
+            <feature name="MfNiWrapperPlugin">
+                <param name="android-package"
+                    value="cordova.plugin.MfNiWrapperPlugin.MfNiWrapperPlugin" />
+            </feature>
+        </config-file>
+        <source-file
+            src="src/android/MfNiWrapperPlugin.kt"
+            target-dir="app/src/main/kotlin/MfNiWrapperPlugin" />
+        <source-file src="src/android/MfNiWrapperActivity.kt"
+            target-dir="app/src/main/kotlin/MfNiWrapperPlugin" />
+    </platform>
+    <!-- ios -->
+    <platform name="ios">
+        <dependency id="cordova-plugin-add-swift-support" version="2.0.2" />
+        <config-file target="config.xml" parent="/*">
+            <feature name="MfNiWrapperPlugin">
+                <param name="ios-package" value="MfNiWrapperPlugin" onload="true" />
+            </feature>
+        </config-file>
+        <podspec>
+            <config>
+                <source url="https://github.com/CocoaPods/Specs.git" />
+            </config>
+            <pods use-frameworks="true">
+                <pod name="NICardManagementSDK" spec="1.1.0" />
+            </pods>
+        </podspec>
+        <source-file src="src/ios/MfNiWrapperPlugin.swift" />
+        <source-file src="src/ios/CardViewController.swift" />
+        <source-file src="src/ios/CardViewModel.swift" />
+        <source-file src="src/ios/SettingsModel.swift" />
+        <source-file src="src/ios/SettingsProvider.swift" />
+        <source-file src="src/ios/RootViewController.swift" />
+        <source-file src="src/ios/RootViewModel.swift" />
+        <source-file src="src/ios/SceneDelegate.swift" />
+        <source-file src="src/ios/AppDelegate.swift" />
+        <header-file src="src/ios/MfNiWrapperPlugin-Bridging-Header.h" />
+    </platform>
+</plugin>
